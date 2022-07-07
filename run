@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+// ==========================================
+// Scripting configurations
+// ==========================================
+const caporal = require('@caporal/core').program;
+
+// Here, you could add custom global options, or tweak
+// the Caporal instance, if required.
+
+// Then it is run:
+require(`${__dirname}/node_modules/@villedemontreal/scripting/dist/src/run`).run({
+  caporal,
+  projectRoot: __dirname,
+  scriptsIndexModule: null, // no custom scripts
+  testsLocations: [`./src/**/*.test.js`]
+});

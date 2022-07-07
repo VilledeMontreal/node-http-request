@@ -1,0 +1,13 @@
+{
+  "extends": "./node_modules/@villedemontreal/lint-config/rules/tsconfig-base.json",
+  "compilerOptions": {
+    "sourceMap": true,
+    "pretty": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "."
+  },
+  "include": ["src"]
+}

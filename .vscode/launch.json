@@ -1,0 +1,85 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // ==========================================
+    // Debug all test files
+    // ==========================================
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug all tests",
+      "preLaunchTask": "tsc",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+      "args": ["${workspaceRoot}/dist/src/**/*.test.js", 
+        "--require",
+        "source-map-support/register",
+        "--no-timeouts", "--exit"],
+      "env": {
+        "ide": "true",
+        "NODE_APP_INSTANCE": "tests"
+      },
+      "sourceMaps": true,
+      "timeout": 10000,
+      "internalConsoleOptions": "neverOpen",
+      "console": "integratedTerminal",
+      "outputCapture": "std",
+      "protocol": "inspector"
+    },
+    // ==========================================
+    // This configuration allows you to debug
+    // the current open tests file
+    // ==========================================
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug current tests file",
+      "preLaunchTask": "tsc",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "${workspaceRoot}/dist/${relativeFileDirname}/${fileBasenameNoExtension}.js",    
+        "--require",
+        "source-map-support/register",     
+        "--no-timeouts",
+        "--exit"
+      ],
+      "env": {
+        "ide": "true",
+        "NODE_APP_INSTANCE": "tests"
+      },
+      "sourceMaps": true,
+      "timeout": 10000,
+      "internalConsoleOptions": "neverOpen",
+      "console": "integratedTerminal",
+      "outputCapture": "std",
+      "protocol": "inspector"
+    },
+    // ==========================================
+    // Same as above, but without compilation.
+    // To be used when "run watch" has been launched in
+    // an external terminal first.
+    // ==========================================
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug current tests file - fast",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "${workspaceRoot}/dist/${relativeFileDirname}/${fileBasenameNoExtension}.js",
+        "--require",
+        "source-map-support/register",         
+        "--no-timeouts",
+        "--exit"
+      ],
+      "env": {
+        "ide": "true",
+        "NODE_APP_INSTANCE": "tests"
+      },
+      "sourceMaps": true,
+      "timeout": 10000,
+      "internalConsoleOptions": "neverOpen",
+      "console": "integratedTerminal",
+      "outputCapture": "std",
+      "protocol": "inspector"
+    }
+  ]
+}
