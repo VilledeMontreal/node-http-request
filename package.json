@@ -1,6 +1,6 @@
 {
   "name": "@villedemontreal/http-request",
-  "version": "7.4.4",
+  "version": "7.4.5",
   "description": "HTTP utilities - send HTTP requests with proper headers, etc.",
   "main": "dist/src/index.js",
   "typings": "dist/src",
@@ -31,24 +31,24 @@
   "dependencies": {
     "@types/app-root-path": "1.2.4",
     "@types/express": "4.17.13",
-    "@types/lodash": "4.14.182",
+    "@types/lodash": "4.14.184",
     "@types/superagent": "4.1.15",
-    "@villedemontreal/general-utils": "5.16.6",
-    "@villedemontreal/logger": "6.5.6",
-    "app-root-path": "3.0.0",
+    "@villedemontreal/general-utils": "5.16.7",
+    "@villedemontreal/logger": "6.5.7",
+    "app-root-path": "3.1.0",
     "http-header-fields-typed": "1.3.0",
     "lodash": "4.17.21",
     "superagent": "7.1.6"
   },
   "peerDependencies": {},
   "devDependencies": {
-    "@types/chai": "4.3.1",
+    "@types/chai": "4.3.3",
     "@types/fs-extra": "9.0.13",
     "@types/mocha": "9.1.1",
     "@types/nock": "10.0.3",
-    "@types/sinon": "10.0.12",
+    "@types/sinon": "10.0.13",
     "@types/superagent": "4.1.15",
-    "@villedemontreal/scripting": "2.1.5",
+    "@villedemontreal/scripting": "2.1.6",
     "@villedemontreal/lint-config": "1.7.7",
     "chai": "4.3.6",
     "express": "4.18.1",
@@ -56,12 +56,12 @@
     "http-status-codes": "2.2.0",
     "mocha": "9.2.2",
     "mocha-jenkins-reporter": "0.4.7",
-    "nock": "13.2.8",
+    "nock": "13.2.9",
     "sinon": "14.0.0",
     "source-map-support": "0.5.21",
     "superagent-mocker": "0.5.2",
     "tslint": "6.1.2",
-    "ts-node": "^10.8.1",
-    "typescript": "4.7.4"
+    "ts-node": "^10.9.1",
+    "typescript": "4.8.2"
   }
 }
