@@ -1,4 +1,11 @@
-import { ILogger, initLogger, LazyLogger, Logger, LoggerConfigs, LogLevel } from '@villedemontreal/logger';
+import {
+  ILogger,
+  initLogger,
+  LazyLogger,
+  Logger,
+  LoggerConfigs,
+  LogLevel,
+} from '@villedemontreal/logger';
 import { configs } from '../config/configs';
 
 let testingLoggerLibInitialised = false;

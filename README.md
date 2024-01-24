@@ -33,7 +33,7 @@ export async function initComponents() {
     () => {
       return correlationIdService.getId();
     },
-    config.routing.caseSensitive // required since 7.0.0
+    config.routing.caseSensitive, // required since 7.0.0
   );
 
   //...
@@ -148,7 +148,6 @@ de l'initialisation de la librairie.
 
 Retourne les `IOrderBy` spécifiés dans la querystring d'une requête de recherche.
 
-
 #### urlJoin
 
 Util to join part of url:
@@ -157,7 +156,12 @@ Util to join part of url:
 import { httpUtils } from '@villedemontreal/http-request';
 
 // To join multiple part of uri:
-let url: string = httpUtils.urlJoin('http://api.montreal.ca/accounts/', '/inum', '@5441521452', 'tickets');
+let url: string = httpUtils.urlJoin(
+  'http://api.montreal.ca/accounts/',
+  '/inum',
+  '@5441521452',
+  'tickets',
+);
 console.log(url); // http://api.montreal.ca/accounts/inum/@5441521452/tickets
 ```
 
@@ -168,7 +172,9 @@ Util to parse an url and get the different parts:
 ```typescript
 import { httpUtils } from '@villedemontreal/http-request';
 
-let url: string = httpUtils.buildUriObject('http://api.montreal.ca/accounts/inum/@5441521452/tickets');
+let url: string = httpUtils.buildUriObject(
+  'http://api.montreal.ca/accounts/inum/@5441521452/tickets',
+);
 console.log(url); // {"uri": "http://api.montreal.ca/accounts/inum/@5441521452/tickets", "baseUri":"http://api.montreal.ca", "path":"/accounts/inum/@5441521452/tickets"}
 ```
 
@@ -209,7 +215,6 @@ Trois "_launch configurations_" sont founies pour déboguer le projet dans VSCod
 
 - "`Debug current tests file - fast`". Lance le fichier de tests _présentement ouvert_ dans VSCode en mode debug. Aucune compilation
   n'est effectuée au préalable. Cette launch configuration doit être utilisée lorsque la compilation incrémentale roule (voir la section "`Mode Watch`" plus haut)
-
 
 # Aide / Contributions
 
