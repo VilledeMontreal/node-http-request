@@ -2,7 +2,7 @@ import { ILogger } from '@villedemontreal/logger';
 import * as _ from 'lodash';
 import { configs } from './configs';
 
-let libIsInited: boolean = false;
+let libIsInited = false;
 
 /**
  * Inits the library.
@@ -16,7 +16,7 @@ export function init(
    * In an API based on "@villemontreal/generator-mtl-node-api",
    * you need to pass `configs.routing.caseSensitive` here!
    */
-  urlCaseSensitive: boolean
+  urlCaseSensitive: boolean,
 ): void {
   if (!loggerCreator) {
     throw new Error(`The Logger Creator is required.`);

@@ -45,10 +45,10 @@ export class Constants {
          * The default number of milliseconds to wait
          * for the data to finish loading.
          */
-        deadline: 60000
-      }
+        deadline: 60000,
+      },
     };
   }
 }
 
-export let constants: Constants = new Constants();
+export const constants: Constants = new Constants();

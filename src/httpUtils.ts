@@ -46,7 +46,7 @@ export class HttpUtils {
    */
   public urlJoin(...args: string[]) {
     return _.map(args, this.removeSlashes)
-      .filter(x => !!x)
+      .filter((x) => !!x)
       .join('/');
   }
 
@@ -83,12 +83,14 @@ export class HttpUtils {
     if ('status' in request) {
       throw new Error(
         `The request object must be of type SuperAgentRequest. Make sure this object has NOT already been awaited ` +
-          `prior to being passed here!`
+          `prior to being passed here!`,
       );
     }
 
     if (!request.url || request.url.indexOf('://') < 0) {
-      throw new Error(`The URL in your request MUST have a protocol and a hostname. Received: ${request.url}`);
+      throw new Error(
+        `The URL in your request MUST have a protocol and a hostname. Received: ${request.url}`,
+      );
     }
 
     if (utils.isBlank(request.get(httpHeaderFieldsTyped.X_CORRELATION_ID))) {
@@ -111,14 +113,14 @@ export class HttpUtils {
       deadline:
         request[timeoutRequestVarName] !== undefined
           ? request[timeoutRequestVarName]
-          : constants.request.timeoutsDefault.deadline
+          : constants.request.timeoutsDefault.deadline,
     });
 
     logger.debug({
       sendingCorrelationIdHeader: request.get(httpHeaderFieldsTyped.X_CORRELATION_ID) || null,
       url: request.url,
       method: request.method,
-      msg: `Http Client - Start request to ${request.method} ${request.url}`
+      msg: `Http Client - Start request to ${request.method} ${request.url}`,
     });
 
     let result;
@@ -146,12 +148,12 @@ export class HttpUtils {
           url: request.url,
           method: request.method,
           timeTaken: timer.toString(),
-          msg: `Http Client - End request ERROR request to ${request.method} ${request.url}`
+          msg: `Http Client - End request ERROR request to ${request.method} ${request.url}`,
         });
 
         throw {
           msg: `An error occured while making the HTTP request to ${request.method} ${request.url}`,
-          originalError: err
+          originalError: err,
         };
       }
     }
@@ -161,7 +163,7 @@ export class HttpUtils {
       method: request.method,
       statusCode: result.status,
       timeTaken: timer.toString(),
-      msg: `Http Client - End request to ${request.method} ${request.url}`
+      msg: `Http Client - End request to ${request.method} ${request.url}`,
     });
 
     return result;
@@ -263,7 +265,7 @@ export class HttpUtils {
   public getQueryParamOneAsDate = (
     req: Request,
     key: string,
-    errorHandler?: (errMsg: string, value?: string) => any
+    errorHandler?: (errMsg: string, value?: string) => any,
   ): Date => {
     const dateStr = this.getQueryParamOne(req, key);
     let date: Date;
@@ -301,7 +303,7 @@ export class HttpUtils {
   public getQueryParamOneAsNumber = (
     req: Request,
     key: string,
-    errorHandler?: (errMsg: string, value?: string) => any
+    errorHandler?: (errMsg: string, value?: string) => any,
   ): number => {
     const numberStr = this.getQueryParamOne(req, key);
     let val: number;
@@ -332,7 +334,7 @@ export class HttpUtils {
   public getQueryParamOneAsBoolean = (
     req: Request,
     key: string,
-    errorHandler?: (errMsg: string, value?: string) => any
+    errorHandler?: (errMsg: string, value?: string) => any,
   ): boolean => {
     const boolStr = this.getQueryParamOne(req, key);
     if (utils.isBlank(boolStr)) {
@@ -394,7 +396,7 @@ export class HttpUtils {
 
       const orderBy: IOrderBy = {
         key,
-        direction
+        direction,
       };
       orderBys.push(orderBy);
     }
@@ -402,4 +404,4 @@ export class HttpUtils {
     return orderBys;
   };
 }
-export let httpUtils: HttpUtils = new HttpUtils();
+export const httpUtils: HttpUtils = new HttpUtils();

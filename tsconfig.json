@@ -1,13 +1,17 @@
 {
-  "extends": "./node_modules/@villedemontreal/lint-config/rules/tsconfig-base.json",
   "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
     "sourceMap": true,
     "pretty": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
+    "newLine": "LF",
+    "alwaysStrict": true,
     "declaration": true,
     "outDir": "dist",
     "rootDir": "."
   },
-  "include": ["src"]
+  "include": ["src", "scripts", "configs"],
+  "exclude": ["dist", "temp", "node_modules", "output", "log", "test-data", "generated", ".*"]
 }

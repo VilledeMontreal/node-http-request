@@ -11,6 +11,6 @@ const caporal = require('@caporal/core').program;
 require(`${__dirname}/node_modules/@villedemontreal/scripting/dist/src/run`).run({
   caporal,
   projectRoot: __dirname,
-  scriptsIndexModule: null, // no custom scripts
-  testsLocations: [`./src/**/*.test.js`]
+  scriptsIndexModule: `./scripts/index`,
+  testsLocations: [`./src/**/*.test.js`],
 });

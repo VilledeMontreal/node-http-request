@@ -32,19 +32,31 @@ describe('httpUtils', () => {
     });
 
     it('with slashes', async () => {
-      assert.equal(httpUtils.urlJoin('http://google.com/', 'foo/', '/bar/'), 'http://google.com/foo/bar');
+      assert.equal(
+        httpUtils.urlJoin('http://google.com/', 'foo/', '/bar/'),
+        'http://google.com/foo/bar',
+      );
     });
 
     it('without slashes', async () => {
-      assert.equal(httpUtils.urlJoin('http://google.com', 'foo', 'bar'), 'http://google.com/foo/bar');
+      assert.equal(
+        httpUtils.urlJoin('http://google.com', 'foo', 'bar'),
+        'http://google.com/foo/bar',
+      );
     });
 
     it('without double slashes', async () => {
-      assert.equal(httpUtils.urlJoin('http://google.com/', '//foo/', '//bar/'), 'http://google.com/foo/bar');
+      assert.equal(
+        httpUtils.urlJoin('http://google.com/', '//foo/', '//bar/'),
+        'http://google.com/foo/bar',
+      );
     });
 
     it('with slashes without text', async () => {
-      assert.equal(httpUtils.urlJoin('http://google.com/', '///', '//bar/'), 'http://google.com/bar');
+      assert.equal(
+        httpUtils.urlJoin('http://google.com/', '///', '//bar/'),
+        'http://google.com/bar',
+      );
     });
 
     it('with slashes and empty text', async () => {
@@ -52,29 +64,44 @@ describe('httpUtils', () => {
     });
 
     it('with slashes and null text', async () => {
-      assert.equal(httpUtils.urlJoin('http://google.com/', null, '//bar/'), 'http://google.com/bar');
+      assert.equal(
+        httpUtils.urlJoin('http://google.com/', null, '//bar/'),
+        'http://google.com/bar',
+      );
     });
 
     it('with slashes and undefined text', async () => {
-      assert.equal(httpUtils.urlJoin('http://google.com/', undefined, '//bar/'), 'http://google.com/bar');
+      assert.equal(
+        httpUtils.urlJoin('http://google.com/', undefined, '//bar/'),
+        'http://google.com/bar',
+      );
     });
 
     it('with http 2 slashes', async () => {
-      assert.equal(httpUtils.urlJoin('http://', 'google.com', 'foo', 'bar'), 'http://google.com/foo/bar');
+      assert.equal(
+        httpUtils.urlJoin('http://', 'google.com', 'foo', 'bar'),
+        'http://google.com/foo/bar',
+      );
     });
 
     it('with http 1 slash', async () => {
-      assert.equal(httpUtils.urlJoin('http:/', 'google.com', 'foo', 'bar'), 'http://google.com/foo/bar');
+      assert.equal(
+        httpUtils.urlJoin('http:/', 'google.com', 'foo', 'bar'),
+        'http://google.com/foo/bar',
+      );
     });
 
     it('with http no slash', async () => {
-      assert.equal(httpUtils.urlJoin('http:', 'google.com', 'foo', 'bar'), 'http://google.com/foo/bar');
+      assert.equal(
+        httpUtils.urlJoin('http:', 'google.com', 'foo', 'bar'),
+        'http://google.com/foo/bar',
+      );
     });
 
     it('another example', async () => {
       assert.equal(
         httpUtils.urlJoin('http://api.montreal.ca/accounts/', '/inum', '@5441521452', 'tickets'),
-        'http://api.montreal.ca/accounts/inum/@5441521452/tickets'
+        'http://api.montreal.ca/accounts/inum/@5441521452/tickets',
       );
     });
   });
@@ -88,8 +115,8 @@ describe('httpUtils', () => {
         mock.get('http://localhost/test', (req: any) => {
           return {
             body: {
-              headers: req.headers
-            }
+              headers: req.headers,
+            },
           };
         });
       });
@@ -107,7 +134,7 @@ describe('httpUtils', () => {
         } catch (err) {
           assert.strictEqual(
             err.message,
-            'The URL in your request MUST have a protocol and a hostname. Received: /test'
+            'The URL in your request MUST have a protocol and a hostname. Received: /test',
           );
         }
       });
@@ -126,7 +153,10 @@ describe('httpUtils', () => {
 
         const headers = response.body.headers;
         assert.strictEqual(headers.titi, '123');
-        assert.strictEqual(headers[httpHeaderFieldsTyped.X_CORRELATION_ID.toLowerCase()], currentCid);
+        assert.strictEqual(
+          headers[httpHeaderFieldsTyped.X_CORRELATION_ID.toLowerCase()],
+          currentCid,
+        );
       });
 
       it('Regular response response', async () => {
@@ -135,8 +165,8 @@ describe('httpUtils', () => {
             return {
               status,
               body: {
-                msg: 'titi'
-              }
+                msg: 'titi',
+              },
             };
           });
 
@@ -167,7 +197,7 @@ describe('httpUtils', () => {
         const request = superagent.get('http://localhost/test').set('titi', '123');
 
         request.timeout({
-          response: 55555
+          response: 55555,
         });
 
         assert.strictEqual(request['_responseTimeout'], 55555);
@@ -183,7 +213,7 @@ describe('httpUtils', () => {
         const request = superagent.get('http://localhost/test').set('titi', '123');
 
         request.timeout({
-          deadline: 55555
+          deadline: 55555,
         });
 
         assert.isUndefined(request['_responseTimeout']);
@@ -200,7 +230,7 @@ describe('httpUtils', () => {
 
         request.timeout({
           deadline: 55555,
-          response: 66666
+          response: 66666,
         });
 
         assert.strictEqual(request['_responseTimeout'], 66666);
@@ -258,10 +288,14 @@ describe('httpUtils', () => {
       app.set('case sensitive routing', caseSensitive);
       app.get(
         '/',
-        async (req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> => {
+        async (
+          req: express.Request,
+          res: express.Response,
+          next: express.NextFunction,
+        ): Promise<void> => {
           expressRequest = req;
           res.sendStatus(HttpStatusCodes.OK);
-        }
+        },
       );
       port = await utils.findFreePort();
       server = await app.listen(port);
@@ -330,11 +364,15 @@ describe('httpUtils', () => {
           assert.fail();
         }
 
-        value = httpUtils.getQueryParamOneAsDate(expressRequest, 'k', (errMsg: string, val: string) => {
-          assert.isOk(errMsg);
-          assert.deepEqual(val, 'toto');
-          return undefined;
-        });
+        value = httpUtils.getQueryParamOneAsDate(
+          expressRequest,
+          'k',
+          (errMsg: string, val: string) => {
+            assert.isOk(errMsg);
+            assert.deepEqual(val, 'toto');
+            return undefined;
+          },
+        );
         assert.deepEqual(value, undefined);
 
         try {
@@ -346,11 +384,15 @@ describe('httpUtils', () => {
           assert.fail();
         }
 
-        value = httpUtils.getQueryParamOneAsNumber(expressRequest, 'k', (errMsg: string, val: string) => {
-          assert.isOk(errMsg);
-          assert.deepEqual(val, 'toto');
-          return 123;
-        });
+        value = httpUtils.getQueryParamOneAsNumber(
+          expressRequest,
+          'k',
+          (errMsg: string, val: string) => {
+            assert.isOk(errMsg);
+            assert.deepEqual(val, 'toto');
+            return 123;
+          },
+        );
         assert.deepEqual(value, 123);
 
         try {
@@ -362,11 +404,15 @@ describe('httpUtils', () => {
           assert.fail();
         }
 
-        value = httpUtils.getQueryParamOneAsBoolean(expressRequest, 'k', (errMsg: string, val: string) => {
-          assert.isOk(errMsg);
-          assert.deepEqual(val, 'toto');
-          return 123;
-        });
+        value = httpUtils.getQueryParamOneAsBoolean(
+          expressRequest,
+          'k',
+          (errMsg: string, val: string) => {
+            assert.isOk(errMsg);
+            assert.deepEqual(val, 'toto');
+            return 123;
+          },
+        );
         assert.deepEqual(value, 123);
       });
 
@@ -653,8 +699,8 @@ describe('httpUtils', () => {
         assert.deepEqual(orderBys, [
           {
             key: 'name',
-            direction: OrderByDirection.ASC
-          }
+            direction: OrderByDirection.ASC,
+          },
         ]);
       });
 
@@ -665,8 +711,8 @@ describe('httpUtils', () => {
         assert.deepEqual(orderBys, [
           {
             key: 'name',
-            direction: OrderByDirection.ASC
-          }
+            direction: OrderByDirection.ASC,
+          },
         ]);
       });
 
@@ -677,8 +723,8 @@ describe('httpUtils', () => {
         assert.deepEqual(orderBys, [
           {
             key: 'name',
-            direction: OrderByDirection.DESC
-          }
+            direction: OrderByDirection.DESC,
+          },
         ]);
       });
 
@@ -689,20 +735,20 @@ describe('httpUtils', () => {
         assert.deepEqual(orderBys, [
           {
             key: 'name',
-            direction: OrderByDirection.DESC
+            direction: OrderByDirection.DESC,
           },
           {
             key: 'age',
-            direction: OrderByDirection.ASC
+            direction: OrderByDirection.ASC,
           },
           {
             key: 'nick',
-            direction: OrderByDirection.ASC
+            direction: OrderByDirection.ASC,
           },
           {
             key: 'color',
-            direction: OrderByDirection.DESC
-          }
+            direction: OrderByDirection.DESC,
+          },
         ]);
       });
 
@@ -713,8 +759,8 @@ describe('httpUtils', () => {
         assert.deepEqual(orderBys, [
           {
             key: 'name',
-            direction: OrderByDirection.DESC
-          }
+            direction: OrderByDirection.DESC,
+          },
         ]);
       });
 
@@ -725,8 +771,8 @@ describe('httpUtils', () => {
         assert.deepEqual(orderBys, [
           {
             key: 'NAME',
-            direction: OrderByDirection.DESC
-          }
+            direction: OrderByDirection.DESC,
+          },
         ]);
       });
     });
@@ -755,8 +801,8 @@ describe('httpUtils', () => {
         assert.deepEqual(orderBys, [
           {
             key: 'NAME',
-            direction: OrderByDirection.DESC
-          }
+            direction: OrderByDirection.DESC,
+          },
         ]);
       });
     });

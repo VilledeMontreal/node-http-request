@@ -21,7 +21,9 @@ export class Configs {
    */
   get loggerCreator(): (name: string) => ILogger {
     if (!this._loggerCreator) {
-      throw new Error(`The Logger Creator HAS to be set as a configuration! Please call the init(...) function first.`);
+      throw new Error(
+        `The Logger Creator HAS to be set as a configuration! Please call the init(...) function first.`,
+      );
     }
     return this._loggerCreator;
   }
@@ -39,7 +41,7 @@ export class Configs {
   get correlationIdProvider(): () => string {
     if (!this._correlationIdProvider) {
       throw new Error(
-        `The Correlation Id provider HAS to be set as a configuration! Please call the init(...) function first.`
+        `The Correlation Id provider HAS to be set as a configuration! Please call the init(...) function first.`,
       );
     }
     return this._correlationIdProvider;
@@ -65,10 +67,10 @@ export class Configs {
   get isUrlCaseSensitive() {
     if (_.isNil(this._urlCaseSensitive)) {
       throw new Error(
-        `The Case Sensitivity to use for the URLs HAS to be set as a configuration! Please call the init(...) function first.`
+        `The Case Sensitivity to use for the URLs HAS to be set as a configuration! Please call the init(...) function first.`,
       );
     }
     return this._urlCaseSensitive;
   }
 }
-export let configs: Configs = new Configs();
+export const configs: Configs = new Configs();

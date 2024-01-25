@@ -8,6 +8,7 @@ node_modules
 yarn.lock
 /dist
 /output
+/temp
 
 *.map
 *.d.ts
