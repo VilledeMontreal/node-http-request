@@ -14,3 +14,5 @@ yarn.lock
 *.d.ts
 *.js
 !/prettier.config.js
+!/.prettierrc.js
+!/.eslintrc.js
