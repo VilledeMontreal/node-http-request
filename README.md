@@ -1,3 +1,7 @@
+**WARNING!!!!**
+
+This repository has been transferred here: https://github.com/VilledeMontreal/node-core-libs/tree/main/packages/node-http-request
+
 # @villedemontreal/http-request
 
 Utilitaires pour requêtes HTTP. Fourni principalement une fonction permettant de faire
